@@ -6,13 +6,14 @@ const Author = require('../models/author');
 const Genre = require('../models/genre');
 const BookUser = require('../models/book_user');
 
-router.get('/', function(req, res, next) {
+router.get('/',  function(req, res, next) {
   const books = Book.all
   res.render('books/index', { title: 'BookedIn || books', books: books });
 });
 
 router.get('/form', async (req, res, next) => {
-  res.render('books/form', { title: 'BookedIn || Books', authors: Author.all, genres: Genre.all });
+  let authors = await Author.all();
+  res.render('books/form', { title: 'BookedIn || Books', authors: Author.all(), genres: Genre.all });
 });
 
 router.post('/upsert', async (req, res, next) => {
