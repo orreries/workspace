@@ -5,16 +5,22 @@ create database my_first_db;
 \c my_first_db;
 
 
-
 create table authors (
- id serial primary key,
- first_name text,
- last_name text
+  id serial primary key,
+  first_name text,
+  last_name text
 );
 
-create table theme (
- id serial primary key,
- name_theme text
+CREATE TABLE genres (
+  id serial primary key,
+  name text
+);
+
+CREATE TABLE books (
+  id serial primary key,
+  title text,
+  genre_id int,
+  publishing_year int
 );
 
 
