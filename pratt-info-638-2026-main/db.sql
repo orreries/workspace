@@ -50,3 +50,4 @@ CREATE TABLE "comments" (
   "comment" text,
   "created_at" timestamp
 );
+

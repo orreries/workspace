@@ -1,18 +1,12 @@
 const db = require('../database')
 
+
 const authors = [
   {firstName: "James", lastName: "S. A. Corey"},
   {firstName: "Craig", lastName: "Alanson"},
   {firstName: "Cixin", lastName: "Liu"},
   {firstName: "John", lastName: "Scalzi"},
-  {firstName: "Toni", lastName: "Morrison"},
-  {firstName: "Octavia", lastName: "Butler"}
 ]
-
-exports.all = async () => {
- const { rows } = await db.getPool().query("select * from authors order by id");
- return db.camelize(rows);
-}
 
 exports.all = async () => {
   const { rows } = await db.getPool().query("select * from authors order by id");

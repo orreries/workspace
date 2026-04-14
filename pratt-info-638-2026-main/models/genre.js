@@ -1,5 +1,5 @@
 const genres = [
-  {genre: "Science Fiction"},
+  {genre: "Sience Fiction"},
   {genre: "Fantasy"},
   {genre: "Romance"},
   {genre: "Mystery"},
