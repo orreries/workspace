@@ -17,6 +17,6 @@
   },
   "scripts": {
     "start": "node ./bookedin.js",
-    "dev": "./node_modules/nodemon/bin/nodemon.js ./bookedin.js"
+    "dev": "nodemon bookedin.js"
   }
 }
