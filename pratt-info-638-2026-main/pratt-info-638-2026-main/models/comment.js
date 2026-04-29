@@ -1,0 +1,33 @@
+const db = require('../database')
+
+exports.add = async (comment) => {
+  await db.getPool().query("insert into comments (comment, user_id, book_id, created_at) values ($1, $2, $3, CURRENT_TIMESTAMP);",
+        [comment.comment, comment.userId, comment.bookId]);
+}
+
+exports.update = async (comment) => {
+    await db.getPool().query("update comments set comment = $1 where id = $2;",
+        [comment.comment, comment.id]);
+}
+
+exports.upsert = (comment) => {
+  if (comment.id) {
+    exports.update(comment);
+  } else {
+    exports.add(comment);
+  }
+}
+
+exports.get = async (id) => {
+  const { rows } = await db.getPool().query("select * from comments where id = $1", [id])
+      return db.camelize(rows)[0]
+}
+
+exports.AllForBook = async (book) => {
+  const { rows } = await db.getPool().query(`
+    select comments.*, users.email as user_email
+    from comments
+    join users on users.id = comments.user_id
+    where comments.book_id = $1`, [book.id])
+  return db.camelize(rows)
+}
